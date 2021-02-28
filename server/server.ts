@@ -1,5 +1,5 @@
-const { OPCUAServer, Variant, DataType, StatusCodes } = require('node-opcua');
-const os = require('os');
+import { OPCUAServer, Variant, DataType, StatusCodes } from 'node-opcua';
+import * as os from 'os';
 
 (async () => {
   // Create OPC UA Server
@@ -25,15 +25,14 @@ const os = require('os');
     browseName: 'MyDevice'
   });
 
+  // Create a variable 1 (in the namespace) and move it to MyDevice folder
   let variable1 = 1;
   setInterval(() => {
     variable1 += 1;
   }, 500);
-
-  // Create a variable 1 (in the namespace) and move it to MyDevice folder
   namespace.addVariable({
     componentOf: device,
-    browseName: 'MyVariable1',
+    browseName: 'DynamicNumber',
     dataType: 'Double',
     value: {
       get: () => new Variant({ dataType: DataType.Double, value: variable1 })
@@ -45,7 +44,7 @@ const os = require('os');
   namespace.addVariable({
     componentOf: device,
     nodeId: 'ns=1;b=1020FFAA', // some opaque NodeId in namespace 4
-    browseName: 'MyVariable2',
+    browseName: 'StaticNumber',
     dataType: 'Double',
     value: {
       get: () => new Variant({ dataType: DataType.Double, value: variable2 }),
@@ -74,6 +73,24 @@ const os = require('os');
     value: {
       get: () =>
         new Variant({ dataType: DataType.Double, value: available_memory() })
+    }
+  });
+
+  // Create a variable 4 (in the namespace) and move it to MyDevice folder
+  let variable4 = 1;
+  setInterval(() => {
+    variable4 += 1;
+  }, 500);
+  namespace.addVariable({
+    componentOf: device,
+    browseName: 'DynamicString',
+    dataType: 'String',
+    value: {
+      get: () =>
+        new Variant({
+          dataType: DataType.String,
+          value: 'raspbian' + variable4
+        })
     }
   });
 
