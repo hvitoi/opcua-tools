@@ -1,0 +1,21 @@
+{
+  "name": "opc-client",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "start": "node client.ts",
+    "start:dev": "nodemon client.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-opcua": "^2.33.0",
+    "node-opcua-client": "^2.33.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "opc-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "start": "node server.ts",
+    "start:dev": "nodemon server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-opcua": "^2.33.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
